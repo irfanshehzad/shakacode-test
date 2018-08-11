@@ -1,0 +1,9 @@
+<%= form_for @user do |f| %>
+  <label>Email</label>
+  <%= f.email_field :email,:required=> true,:autofocus=>true %>
+  <label>Password</label>
+  <%= f.password_field :password,:required=> true %>
+  <label>Password Confirmation</label>
+  <%= f.password_field :password_confirmation,:required=> true %>
+  <%= f.submit  %>
+<%end%>

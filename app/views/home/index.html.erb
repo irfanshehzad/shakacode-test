@@ -1,0 +1,34 @@
+<%if user_logged_in?%>
+  <%= link_to "Log Out",log_out_path,:method=>"delete" %>
+<%else%>
+  <%= link_to "Login", new_session_path %>
+<%end%>
+<%if user_logged_in?%>
+  <%if current_user.is_admin?%>
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@users.each do |user|%>
+          <tr>
+            <th><%= user.email %></th>
+            <th><%= link_to "Edit",edit_user_path(user) %></th>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <p>Pagination</p>
+    <ul>
+      <% (1..@paginator.total_pages).to_a.each do |page| %>
+        <li><%= link_to page, root_path(page: page) %></li>
+      <%end%>
+    </ul>
+    <%= link_to "Create User",new_user_path %>
+  <%else%>
+    <p>Hello World!!!</p>
+  <%end%>
+<%end%>
